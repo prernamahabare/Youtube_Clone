@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import RecommendedVideos from './components/RecommendedVideos';
+import SearchPage from './components/SearchPage'
+import MapTutorial from './components/MapTutorial';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<><Header />
+            <div className="app_components">
+              <Sidebar />
+              <RecommendedVideos />
+            </div></>} />
+          <Route path='/search/:searchItem' element={<><Header />
+            <div className="app_components">
+              <Sidebar />
+              <SearchPage />
+            </div></>}></Route>
+            <Route path="/map" element={<MapTutorial />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
